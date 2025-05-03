@@ -1,4 +1,6 @@
-/* CSS RESET: Normalize spacing and default rendering across browsers */
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -6,253 +8,172 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html, body {
   height: 100%;
+  background: var(--bg-dark);
+  color: var(--text-light);
   font-family: Arial, sans-serif;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 :root {
   --brand-teal: #5A8785;
-  --bg-dark: #111;
-  --text-light: #fafafa;
+  --bg-dark:   #111;
+  --text-light:#fafafa;
 }
 
-/* RESET & BASE */
-*,
-body {
-  margin: 0;
-  background: var(--bg-dark);
-  color: var(--text-light);
-  font-family: Arial, sans-serif;
-  line-height: 1.4;
-}
 
-/* HEADER */
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0.5rem 0.8rem;
   background: #000;
-  
-}
-header .logo {
-  height: 80px;
-  margin-bottom: 0.3rem;
-}
-header .title h1 {
-  font-size: 2rem;
-  margin: 0;
-}
-header .title .tagline {
-  font-size: 1.2rem;
-  color: var(--brand-teal);
-  margin-top: 0.3rem;
-}
-/* Center the title between the two logos */
-header {
-  /* keep your existing declarations… */
+  padding: .5rem .8rem;
   display: flex;
-  justify-content: space-between;  /* ensure logos sit at the ends */
-  align-items: center;             /* vertical centering */
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* make the middle “.title” flex to fill the gap and center its text */
+header .logo {
+  flex: 0 0 auto;
+  height: 80px;
+}
+
 header .title {
-  flex: 1 1 auto;
+  flex: 1;
   text-align: center;
 }
 
-/* prevent logos from stretching or shrinking */
-header .logo {
-  flex: 0 0 auto;
-}
-.schedule h2 {
-  font-size: 1.5rem;
+header .title h1 {
+  font-size: 2rem;
+  color: var(--text-light);
 }
 
-#schedule-container {
-  font-size: 1.5rem;
+header .title .tagline {
+  font-size: 1.2rem;
+  color: var(--brand-teal);
 }
 
-/* GRID LAYOUT */
+
+/* ==========================================================================
+   GRID LAYOUT
+   ========================================================================== */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
   padding: 1rem;
 }
+
 @media (min-width: 600px) {
-  header {
-    flex-direction: row;
-    align-items: center;
-  }
-  header .logo {
-    margin-bottom: 0;
-    margin-right: 1rem;
-  }
   .grid-container {
     grid-template-columns: 1fr 1.5fr;
   }
 }
+
 @media (min-width: 900px) {
-  header .title h1 {
-    font-size: 5rem;
-  }
-  header .title .tagline {
-    font-size: 2rem;
-  }
   .grid-container {
     grid-template-columns: 1fr 1.5fr 1fr 1fr;
   }
-  .chat iframe {
-    height: 800px;
-  }
-  #now-art {
-    max-width: 600px;
-  }
 }
-/* ─── MOBILE REFORMAT OVERWRITES (max-width: 768px) ─────────────────────────── */
-@media (max-width: 768px) {
-  /* 1. Reorder so live-player comes first, then chat, etc. */
-  .grid-container {
-    display: flex;
-    flex-direction: column;
-  }
-  .live-player { order: 1; }
-  .chat       { order: 2; }
-  .schedule   { order: 3; }
-  .mixcloud   { order: 4; }
 
-  /* 2. Hide the second logo */
-  header img.logo:last-of-type {
-    display: none;
-  }
 
-  /* 3. Make the h1 and tagline even smaller */
-  header .title h1 {
-    font-size: 1.8rem !important;
-    line-height: 1.2;
-  }
-  header .title .tagline {
-    font-size: 1rem !important;
-  }
-
-  /* 4. Shrink the live player */
-  .live-player iframe {
-    height: 80px !important;
-  }
-
-  /* 5. Tuck the chat underneath at a reasonable height */
-  .chat iframe {
-    height: 400px !important;
-  }
-
-  /* 6. Remove the mixcloud section entirely on phones */
-  .mixcloud {
-    display: none !important;
-  }
-}
-/* SECTIONS */
+/* ==========================================================================
+   SECTIONS: base box styling
+   ========================================================================== */
 section {
   background: #222;
   border: 2px solid var(--brand-teal);
   border-radius: 6px;
-  padding: 0.5rem;
-}
-section h2 {
-  margin-bottom: 0.5rem;
-  color: var(--brand-teal);
-  text-align: center;
+  padding: .5rem;
+  color: var(--text-light);
 }
 
-/* CHAT IFRAME */
+section h2 {
+  text-align: center;
+  color: var(--brand-teal);
+  margin-bottom: .5rem;
+}
+
+
+/* ==========================================================================
+   CHAT IFRAME
+   ========================================================================== */
 .chat iframe {
   width: 100%;
-  height: 900px;
-  max-height: 120vh;
+  height: 800px;
   border: none;
   border-radius: 4px;
 }
 
-/* LIVE PLAYER */
+@media (max-width: 900px) {
+  .chat iframe {
+    height: 700px;
+  }
+}
+
+
+/* ==========================================================================
+   LIVE PLAYER
+   ========================================================================== */
 .live-player {
-  position: relative;
   background: #222;
   border: 2px solid var(--brand-teal);
   border-radius: 6px;
   padding: 1rem;
   text-align: center;
 }
-.live-player iframe,
-.live-player audio {
+
+.live-player iframe {
   width: 100%;
   height: 300px;
-  max-height: 55vh;
-  border: none;
-  border-radius: 4px;
-  display: block;
-  margin: 0 auto 1rem;
-}
-
-/* CURRENT DJ ARTWORK */
-#now-dj {
-  display: none;
-}
-#now-art {
-  width: 100%;
-  max-width: 350px;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin: 1rem auto;
-  object-fit: cover;
-}
-
-/* COMPACT POP-OUT PLAYER */
-.player-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 2rem auto;
-  text-align: center;
-}
-.player-container iframe {
-  width: 100%;
-  height: 90vh;
   border: none;
   border-radius: 4px;
   margin-bottom: 1rem;
 }
+
+.player-container iframe {
+  height: 90vh !important;
+}
+
 #now-archive {
   font-weight: bold;
   color: var(--brand-teal);
   font-size: 1.2rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
+  margin: .5rem 0;
 }
 
-.popout-btn {
-  display: inline-block;
-  padding: 0.5rem 2rem;
-  font-size: 1rem;
-  background: var(--brand-teal);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 0.3rem auto 0.5rem;
+
+/* ==========================================================================
+   CURRENT SHOW ARTWORK & TITLE
+   ========================================================================== */
+#now-dj {
+  font-size: 1.4rem;
+  margin-top: .5rem;
 }
 
-/* WEEKLY SCHEDULE */
+#now-art {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  margin: 1rem auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+
+/* ==========================================================================
+   WEEKLY SCHEDULE
+   ========================================================================== */
 .schedule {
-  position: relative;
-  max-height: 2000px;
-  overflow-y: auto;
   background: #111;
+  overflow-y: auto;
   border-radius: 6px;
   padding: 0 1rem 1rem;
+  max-height: 2000px;
 }
 
 .schedule-heading {
@@ -260,37 +181,30 @@ section h2 {
   top: 0;
   background: #111;
   z-index: 10;
-  padding: 0.5rem 0;
+  padding: .5rem 0;
   font-size: 2rem;
-  border-bottom: 1px solid #5A8785;
+  border-bottom: 1px solid var(--brand-teal);
 }
+
 #schedule-container h3 {
   margin-top: 2rem;
-  border-bottom: 1px solid #5A8785;
-  padding-bottom: 0.5rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--brand-teal);
   font-size: 1.6rem;
 }
 
 #schedule-container ul {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 #schedule-container li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 1rem;
-  padding-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#schedule-container li div {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
 #schedule-container li strong {
@@ -305,35 +219,35 @@ section h2 {
   border-radius: 4px;
 }
 
-#schedule-container li span {
+#schedule-container li span,
+#schedule-container li a {
   font-size: 1.2rem;
 }
 
 #schedule-container li a {
   text-decoration: none;
-  font-size: 1.2rem;
   margin-left: auto;
-  background: #5A8785;
+  background: var(--brand-teal);
   color: #000;
   padding: 2px 6px;
   border-radius: 4px;
 }
 
-/* MIXCLOUD EMBEDS */
-.mixcloud {
+
+/* ==========================================================================
+   MIXCLOUD EMBEDS (DESKTOP)
+   ========================================================================== */
+#mixcloud-section {
   background: #000;
   border-radius: 6px;
-  padding: 0.5rem;
+  padding: .5rem;
   display: flex;
   flex-direction: column;
-  height: 2000px;
-  overflow: hidden;
 }
 
 #mixcloud-list {
-  flex: 1 1 auto;
+  flex: 1;
   overflow-y: auto;
-  overflow-x: hidden;
   max-height: 1900px;
   scroll-behavior: smooth;
   padding-right: 5px;
@@ -342,178 +256,128 @@ section h2 {
 #mixcloud-list iframe {
   width: 100%;
   height: 120px;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   background: #000;
   border: none;
 }
 
-/* UPLOAD BUTTON */
+
+/* ==========================================================================
+   ADD-MIXCLOUD CONTROLS
+   ========================================================================== */
 .add-mixcloud {
-  flex-shrink: 0;
   text-align: center;
-  padding-top: 0.5rem;
-  margin-top: auto;
+  padding-top: .5rem;
 }
 
 .add-mixcloud input {
   width: 80%;
   max-width: 600px;
-  padding: 0.5rem;
+  padding: .5rem;
   font-size: 1rem;
 }
 
 .add-mixcloud button {
-  padding: 0.5rem 2rem;
+  margin-top: .5rem;
+  padding: .5rem 2rem;
   font-size: 1rem;
   background: var(--brand-teal);
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-top: 0.5rem;
 }
 
-/* FOOTER BANNER */
+
+/* ==========================================================================
+   FOOTER BANNER
+   ========================================================================== */
 .banner {
+  background: var(--brand-teal);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  background: var(--brand-teal);
+  gap: .5rem;
   padding: 1rem;
 }
+
 .banner a {
+  flex: 1;
+  text-align: center;
   color: #000;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.4rem;
-  letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
-  flex: 1;
-  text-align: center;
+  padding: .5rem 1rem;
 }
-.banner a::before,
-.banner a::after {
-  content: none !important;
-}
-.banner a:hover {
-  color: var(--text-light);
-}
+
 @media (min-width: 600px) {
   .banner {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
   }
 }
 
-/* ENFORCE PLAYER HEIGHT OVERRIDES */
-.live-player iframe {
-  height: 400px !important;
-  margin-top: 10px !important;
-}
-.player-container iframe {
-  height: 90vh !important;
+
+/* ==========================================================================
+   TEAL-LINE ANIMATION
+   ========================================================================== */
+.teal-line {
+  height: 8px;
+  background-color: var(--brand-teal);
+  width: 100%;
+  margin-top: .5rem;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: tealWipe 2s ease-out forwards;
 }
 
-/* MOBILE FRIENDLY ADJUSTMENTS */
+@keyframes tealWipe {
+  to { transform: scaleX(1); }
+}
+
+
+/* ==========================================================================
+   MOBILE OVERRIDES (max-width: 768px)
+   ========================================================================== */
 @media (max-width: 768px) {
+  /* reorder sections */
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    gap: 1rem;
+  }
+  .live-player { order: 1; }
+  .chat       { order: 2; }
+  .schedule   { order: 3; }
+  .mixcloud   { order: 4; display: none !important; } /* hide on mobile */
+
+  /* center & shrink header */
   header {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
   header .logo {
-    height: auto;
     max-width: 180px;
-    margin-bottom: 0.5rem;
+    margin: .5rem 0;
   }
   header .title h1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
+    line-height: 1.2;
   }
   header .title .tagline {
-    font-size: 1.4rem;
-  }
-  .grid-container {
-    padding: 0 0.5rem;
-  }
-  section {
-    padding: 1rem 0.5rem;
-  }
-  .chat iframe {
-    height: 500px;
-  }
-  .live-player iframe,
-  .live-player audio {
-    height: 100px !important;
-  }
-  #now-art {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-  .popout-btn {
-    width: auto;
-    padding: 0.5rem 2rem;
     font-size: 1rem;
   }
-  .mixcloud {
-    height: 600px;
-  }
-  #mixcloud-list {
-    max-height: 450px;
-  }
-  #mixcloud-list iframe {
-    height: 150px;
-  }
-  .add-mixcloud input {
-    width: 95%;
-  }
-  .add-mixcloud button {
-    width: 100%;
-  }
-  footer.banner {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-.teal-line {
-  height: 8px;
-  background-color: var(--brand-teal);
-  width: 100%;
-  margin-top: 0.5rem;
-  animation: tealWipe 2s ease-out forwards;
-  transform: scaleX(0);
-  transform-origin: left;
-}
 
+  /* chat & player sizes */
+  .chat iframe       { height: 400px !important; }
+  .live-player iframe{ height: 80px  !important; }
 
-
-/* ─── ADDITIONAL MOBILE-ONLY OVERRIDES (max-width: 768px) ────────────────── */
-@media (max-width: 768px) {
-  /* Remove the now-playing artwork/logo */
-  #now-art {
+  /* remove extras */
+  #now-art, .popout-btn, .banner {
     display: none !important;
-  }
-  /* Remove footer link buttons */
-  .banner {
-    display: none !important;
-  }
-  /* Remove the popout player button */
-  .popout-btn {
-    display: none !important;
-  }
-  /* Increase chat height by 30% */
-  .chat iframe {
-    height: 650px !important;
-  }
-}
-
-@keyframes tealWipe {
-  to {
-    transform: scaleX(1);
   }
 }
