@@ -1,12 +1,16 @@
-/* ==========================================================================
-   RESET & BASE
-   ========================================================================== */
+/* ─── RESET & BASE STYLES ───────────────────────────────────────────────────── */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --brand-teal: #5A8785;
+  --bg-dark:   #111;
+  --text-light: #fafafa;
 }
 
 html, body {
@@ -19,48 +23,38 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-:root {
-  --brand-teal: #5A8785;
-  --bg-dark:   #111;
-  --text-light:#fafafa;
-}
-
-
-/* ==========================================================================
-   HEADER
-   ========================================================================== */
+/* ─── HEADER ───────────────────────────────────────────────────────────────── */
 header {
-  background: #000;
-  padding: .5rem .8rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between;  /* logos at ends */
+  align-items:    center;
+  padding: 0.5rem 0.8rem;
+  background: #000;
 }
 
 header .logo {
-  flex: 0 0 auto;
+  flex: 0 0 auto;  /* don’t stretch or shrink */
   height: 80px;
+  margin-bottom: 0.3rem;
 }
 
 header .title {
-  flex: 1;
+  flex: 1 1 auto;   /* fill center gap */
   text-align: center;
 }
 
 header .title h1 {
   font-size: 2rem;
-  color: var(--text-light);
+  margin: 0;
 }
 
 header .title .tagline {
   font-size: 1.2rem;
   color: var(--brand-teal);
+  margin-top: 0.3rem;
 }
 
-
-/* ==========================================================================
-   GRID LAYOUT
-   ========================================================================== */
+/* ─── GRID LAYOUT ─────────────────────────────────────────────────────────── */
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -72,108 +66,91 @@ header .title .tagline {
   .grid-container {
     grid-template-columns: 1fr 1.5fr;
   }
-}
-
-@media (min-width: 900px) {
-  .grid-container {
-    grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  header .logo {
+    margin-bottom: 0;
+    margin-right: 1rem;
   }
 }
 
+@media (min-width: 900px) {
+  header .title h1 {
+    font-size: 5rem;
+  }
+  header .title .tagline {
+    font-size: 2rem;
+  }
+  .grid-container {
+    grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  }
+  .chat iframe {
+    height: 800px;
+  }
+  #now-art {
+    max-width: 600px;
+  }
+}
 
-/* ==========================================================================
-   SECTIONS: base box styling
-   ========================================================================== */
+/* ─── SECTIONS ────────────────────────────────────────────────────────────── */
 section {
   background: #222;
   border: 2px solid var(--brand-teal);
   border-radius: 6px;
-  padding: .5rem;
-  color: var(--text-light);
+  padding: 0.5rem;
 }
 
 section h2 {
-  text-align: center;
+  margin-bottom: 1.7rem;
   color: var(--brand-teal);
-  margin-bottom: .5rem;
+  text-align: center;
 }
 
-
-/* ==========================================================================
-   CHAT IFRAME
-   ========================================================================== */
+/* CHAT IFRAME */
 .chat iframe {
   width: 100%;
-  height: 800px;
+  height: 1000px;
   border: none;
   border-radius: 4px;
 }
 
-@media (max-width: 900px) {
-  .chat iframe {
-    height: 700px;
-  }
-}
-
-
-/* ==========================================================================
-   LIVE PLAYER
-   ========================================================================== */
+/* LIVE PLAYER */
 .live-player {
   background: #222;
   border: 2px solid var(--brand-teal);
   border-radius: 6px;
-  padding: 1rem;
+  padding: 0.5rem;
   text-align: center;
 }
 
-.live-player iframe {
+.live-player iframe,
+.live-player audio {
   width: 100%;
   height: 300px;
+  max-height: 55vh;
   border: none;
   border-radius: 4px;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem;
+  display: block;
 }
 
-.player-container iframe {
-  height: 90vh !important;
+.player-container {
+  max-width: 1000px;
+  margin: 2rem auto;
 }
 
 #now-archive {
   font-weight: bold;
   color: var(--brand-teal);
-  font-size: 1.2rem;
-  margin: .5rem 0;
+  font-size: 1.5rem;
+  margin: 0.3rem 0 1rem;
 }
 
-
-/* ==========================================================================
-   CURRENT SHOW ARTWORK & TITLE
-   ========================================================================== */
-#now-dj {
-  font-size: 1.4rem;
-  margin-top: .5rem;
-}
-
-#now-art {
-  display: block;
-  width: 100%;
-  max-width: 350px;
-  margin: 1rem auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-
-/* ==========================================================================
-   WEEKLY SCHEDULE
-   ========================================================================== */
+/* WEEKLY SCHEDULE */
 .schedule {
   background: #111;
-  overflow-y: auto;
   border-radius: 6px;
   padding: 0 1rem 1rem;
   max-height: 2000px;
+  overflow-y: auto;
 }
 
 .schedule-heading {
@@ -181,15 +158,15 @@ section h2 {
   top: 0;
   background: #111;
   z-index: 10;
-  padding: .5rem 0;
-  font-size: 2rem;
+  padding: 0.5rem 0;
+  font-size: 1.5rem;
   border-bottom: 1px solid var(--brand-teal);
 }
 
 #schedule-container h3 {
   margin-top: 2rem;
-  padding-bottom: .5rem;
   border-bottom: 1px solid var(--brand-teal);
+  padding-bottom: 0.5rem;
   font-size: 1.6rem;
 }
 
@@ -200,11 +177,12 @@ section h2 {
 
 #schedule-container li {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   margin-bottom: 1rem;
-  padding-bottom: .8rem;
-  border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
 #schedule-container li strong {
@@ -225,159 +203,187 @@ section h2 {
 }
 
 #schedule-container li a {
-  text-decoration: none;
   margin-left: auto;
   background: var(--brand-teal);
   color: #000;
   padding: 2px 6px;
   border-radius: 4px;
+  text-decoration: none;
 }
 
-
-/* ==========================================================================
-   MIXCLOUD EMBEDS (DESKTOP)
-   ========================================================================== */
-#mixcloud-section {
+/* MIXCLOUD EMBEDS */
+.mixcloud {
   background: #000;
   border-radius: 6px;
-  padding: .5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
+  height: 2000px;
+  overflow: hidden;
 }
 
 #mixcloud-list {
   flex: 1;
   overflow-y: auto;
   max-height: 1900px;
-  scroll-behavior: smooth;
   padding-right: 5px;
+  scroll-behavior: smooth;
 }
 
 #mixcloud-list iframe {
   width: 100%;
   height: 120px;
-  margin-bottom: .5rem;
-  background: #000;
+  margin-bottom: 0.5rem;
   border: none;
 }
 
-
-/* ==========================================================================
-   ADD-MIXCLOUD CONTROLS
-   ========================================================================== */
+/* ADD SHOW UI */
 .add-mixcloud {
   text-align: center;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 
 .add-mixcloud input {
   width: 80%;
   max-width: 600px;
-  padding: .5rem;
+  padding: 0.5rem;
   font-size: 1rem;
 }
 
 .add-mixcloud button {
-  margin-top: .5rem;
-  padding: .5rem 2rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
   font-size: 1rem;
   background: var(--brand-teal);
-  color: #000;
+  color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
+/* ─── SLIDESHOW WINDOW & BANNER ADJUSTMENTS ───────────────────────────────── */
 
-/* ==========================================================================
-   FOOTER BANNER
-   ========================================================================== */
+/* Full-width bottom banner spanning all grid columns */
 .banner {
-  background: var(--brand-teal);
+  grid-column: 1 / -1;
+  width: 100%;
+  max-width: none;
+  justify-content: space-evenly;
+}
+
+/* Hide only the slideshow "Now Playing" wording (white text above slideshow) */
+#slideshow h2 {
+  display: none !important;
+}
+
+/* Teal border around the slideshow window */
+#slideshow .slideshow-window,
+.slideshow-window {
+  border: 2px solid var(--brand-teal);
+}
+
+/* FOOTER BANNER */
+.banner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
+  background: var(--brand-teal);
   padding: 1rem;
 }
 
 .banner a {
   flex: 1;
   text-align: center;
-  color: #000;
   text-decoration: none;
+  color: #000;
   font-weight: 700;
   font-size: 1.4rem;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.banner a:hover {
+  color: var(--text-light);
 }
 
 @media (min-width: 600px) {
   .banner {
     flex-direction: row;
-    justify-content: space-between;
   }
 }
 
-
-/* ==========================================================================
-   TEAL-LINE ANIMATION
-   ========================================================================== */
-.teal-line {
-  height: 8px;
-  background-color: var(--brand-teal);
-  width: 100%;
-  margin-top: .5rem;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: tealWipe 2s ease-out forwards;
+/* PLAYER HEIGHT OVERRIDES (desktop only) */
+.live-player iframe,
+.player-container iframe {
+  height: 90vh !important;
+  margin-top: 10px !important;
 }
 
-@keyframes tealWipe {
-  to { transform: scaleX(1); }
-}
-
-
-/* ==========================================================================
-   MOBILE OVERRIDES (max-width: 768px)
-   ========================================================================== */
+/* ─── MOBILE OVERWRITES ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* reorder sections */
-  .grid-container {
-    display: flex;
-    flex-direction: column;
-    padding: .5rem;
-    gap: 1rem;
-  }
-  .live-player { order: 1; }
-  .chat       { order: 2; }
-  .schedule   { order: 3; }
-  .mixcloud   { order: 4; display: none !important; } /* hide on mobile */
-
-  /* center & shrink header */
   header {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
+
   header .logo {
     max-width: 180px;
-    margin: .5rem 0;
+    margin-bottom: 0.5rem;
   }
+
   header .title h1 {
     font-size: 1.8rem;
     line-height: 1.2;
   }
+
   header .title .tagline {
     font-size: 1rem;
   }
 
-  /* chat & player sizes */
-  .chat iframe       { height: 400px !important; }
-  .live-player iframe{ height: 80px  !important; }
-
-  /* remove extras */
-  #now-art, .popout-btn, .banner {
-    display: none !important;
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.5rem;
   }
+  .live-player    { order: 1; }
+  .chat           { order: 2; }
+  .schedule       { order: 3; }
+  .mixcloud       { order: 4; display: none !important; }
+
+  .chat iframe    { height: 650px !important; }
+  .live-player iframe,
+  .live-player audio { height: 80px !important; }
+
+  #now-art        { display: none !important; }
+  .popout-btn     { display: none !important; }
+
+  .banner         { display: none !important; }
+
+  #mixcloud-list { max-height: 450px; }
+  #mixcloud-list iframe { height: 150px; }
+
+  .add-mixcloud input  { width: 95%; }
+  .add-mixcloud button { width: 100%; }
+}
+/* ─── CHAT PARTICIPANTS PANE ──────────────────────────────────────────────── */
+.rc-user-list-container {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #222;
+  border: 2px solid var(--brand-teal);
+  border-radius: 6px;
+}
+.rc-user-list-container h3 {
+  margin-bottom: 0.5rem;
+  color: var(--brand-teal);
+  text-align: center;
+  font-size: 1.2rem;
+}
+.rc-user-list div {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 1rem;
 }
