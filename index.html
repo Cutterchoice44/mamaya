@@ -4,26 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cutters Choice Radio</title>
+
+  <!-- Preconnects for faster API/widget loads -->
   <link rel="preconnect" href="https://app.radiocult.fm">
   <link rel="preconnect" href="https://widget.mixcloud.com">
+
+  <!-- Main stylesheet (includes your logo-size fix) -->
   <link rel="stylesheet" href="style.css">
+
   <!-- Socket.IO client for chat participants -->
-  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" defer></script>
 </head>
 <body>
   <header>
-    <img class="logo" src="https://i.imgur.com/72gdPJY.png" alt="Cutters Choice Radio Logo" loading="lazy">
+    <div class="logo-container">
+      <img
+        class="logo"
+        src="https://i.imgur.com/72gdPJY.png"
+        alt="Cutters Choice Radio Logo"
+        loading="lazy"
+      >
+    </div>
+
     <div class="title">
       <h1>Cutters Choice Radio</h1>
       <p class="tagline">The home of relentless flavas and significant bangers!</p>
     </div>
-    <img class="logo" src="https://i.imgur.com/72gdPJY.png" alt="Cutters Choice Radio Logo" loading="lazy">
+
+    <div class="logo-container">
+      <img
+        class="logo"
+        src="https://i.imgur.com/72gdPJY.png"
+        alt="Cutters Choice Radio Logo"
+        loading="lazy"
+      >
+    </div>
   </header>
 
   <div class="teal-line"></div>
 
   <div class="grid-container">
-
+    <!-- …the rest of your sections here… -->
     <!-- CHAT SECTION -->
     <section class="chat">
       <h2>Cutters Chat</h2>
