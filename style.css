@@ -34,7 +34,6 @@ header {
 
 header .logo {
   flex: 0 0 auto;  /* don’t stretch or shrink */
-  height: 80px;
   margin-bottom: 0.3rem;
 }
 
@@ -262,8 +261,6 @@ section h2 {
 }
 
 /* ─── SLIDESHOW WINDOW & BANNER ADJUSTMENTS ───────────────────────────────── */
-
-/* Full-width bottom banner spanning all grid columns */
 .banner {
   grid-column: 1 / -1;
   width: 100%;
@@ -271,12 +268,10 @@ section h2 {
   justify-content: space-evenly;
 }
 
-/* Hide only the slideshow "Now Playing" wording (white text above slideshow) */
 #slideshow h2 {
   display: none !important;
 }
 
-/* Teal border around the slideshow window */
 #slideshow .slideshow-window,
 .slideshow-window {
   border: 2px solid var(--brand-teal);
@@ -321,7 +316,6 @@ section h2 {
   margin-top: 10px !important;
 }
 
-/* ─── MOBILE OVERWRITES ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -348,6 +342,7 @@ section h2 {
     flex-direction: column;
     padding: 0 0.5rem;
   }
+
   .live-player    { order: 1; }
   .chat           { order: 2; }
   .schedule       { order: 3; }
@@ -368,22 +363,10 @@ section h2 {
   .add-mixcloud input  { width: 95%; }
   .add-mixcloud button { width: 100%; }
 }
-/* ─── CHAT PARTICIPANTS PANE ──────────────────────────────────────────────── */
-.rc-user-list-container {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  background: #222;
-  border: 2px solid var(--brand-teal);
-  border-radius: 6px;
-}
-.rc-user-list-container h3 {
-  margin-bottom: 0.5rem;
-  color: var(--brand-teal);
-  text-align: center;
-  font-size: 1.2rem;
-}
-.rc-user-list div {
-  padding: 0.3rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-size: 1rem;
+
+/* ─── PIN LOGOS TO DOUBLE CURRENT SIZE ─────────────────────────────────────── */
+header img.logo {
+  height: 260px !important;
+  width: auto   !important;
+  object-fit: contain !important;
 }
